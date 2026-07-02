@@ -1,0 +1,121 @@
+id_matching;id_laureat;id_offre;score_competences;score_cv_offre;score_localisation;score_experience;score_disponibilite;score_final;decision;competences_communes;competences_manquantes;date_matching
+M001;L001;O012;70;55;100;70;100;74;Recommande;HACCP|Cuisine;Arts de table|Housekeeping;2026-06-20
+M002;L002;O004;20;62;60;78;75;48;Non prioritaire;;HACCP|Plantes medicinales|Sechage|Traçabilite;2026-06-20
+M003;L003;O004;20;69;60;86;75;50;Moyen;;HACCP|Plantes medicinales|Sechage|Traçabilite;2026-06-20
+M004;L004;O004;20;76;60;94;75;53;Moyen;;HACCP|Plantes medicinales|Sechage|Traçabilite;2026-06-20
+M005;L005;O009;45;83;100;70;100;71;Recommande;Lean manufacturing;Production|Gestion stock|5S;2026-06-20
+M006;L006;O011;20;90;60;78;75;55;Moyen;;Mise en page|Prepress|Branding|Impression;2026-06-20
+M007;L007;O013;20;57;100;86;75;53;Moyen;;Analyse risques|Securite travail|Environnement|HACCP;2026-06-20
+M008;L008;O015;20;64;60;94;75;50;Moyen;;Brancardage|Urgences|Premiers secours|Soins de base;2026-06-20
+M009;L009;O016;20;71;60;70;100;52;Moyen;;Gestion exploitation|Irrigation|Fertilisation|Suivi cultures;2026-06-20
+M010;L010;O018;70;78;100;78;75;78;Recommande;Lean manufacturing|Controle qualite;CAN Bus|Maintenance vehicule;2026-06-20
+M011;L011;O020;20;85;60;86;75;54;Moyen;;Topographie|Securite chantier|Lecture plans|AutoCAD;2026-06-20
+M012;L012;O022;20;92;100;94;75;63;Moyen;;Maintenance industrielle|Production|Lean manufacturing|Gestion stock;2026-06-20
+M013;L013;O013;20;59;60;70;100;49;Non prioritaire;;Analyse risques|Securite travail|Environnement|HACCP;2026-06-20
+M014;L014;O016;95;66;100;78;75;85;Tres recommande;Gestion exploitation|Irrigation|Fertilisation;Suivi cultures;2026-06-20
+M015;L015;O017;20;73;60;86;75;51;Moyen;;Conditionnement|HACCP|Plantes medicinales|Sechage;2026-06-20
+M016;L016;O020;20;80;100;94;75;60;Moyen;;Topographie|Securite chantier|Lecture plans|AutoCAD;2026-06-20
+M017;L017;O029;20;87;60;70;100;56;Moyen;;Capteurs agricoles|SIG|Cooperatives|Gestion exploitation;2026-06-20
+M018;L018;O020;20;94;100;78;75;62;Moyen;;Topographie|Securite chantier|Lecture plans|AutoCAD;2026-06-20
+M019;L019;O022;20;61;60;86;75;48;Non prioritaire;;Maintenance industrielle|Production|Lean manufacturing|Gestion stock;2026-06-20
+M020;L020;O025;20;68;100;94;75;57;Moyen;;Service client|Reception|Gestion reservations|HACCP;2026-06-20
+M021;L021;O022;20;75;100;70;100;59;Moyen;;Maintenance industrielle|Production|Lean manufacturing|Gestion stock;2026-06-20
+M022;L022;O033;20;82;60;78;75;53;Moyen;;Beton arme|Topographie|Securite chantier|Lecture plans;2026-06-20
+M023;L023;O032;20;89;100;86;75;61;Moyen;;Psychologie enfant|Communication parentale|Accompagnement enfant|Activites prescolaires;2026-06-20
+M024;L024;O030;20;56;60;94;75;48;Non prioritaire;;Controle qualite|Conditionnement|HACCP|Plantes medicinales;2026-06-20
+M025;L025;O032;20;63;60;70;100;50;Moyen;;Psychologie enfant|Communication parentale|Accompagnement enfant|Activites prescolaires;2026-06-20
+M026;L026;O033;20;70;100;78;75;56;Moyen;;Beton arme|Topographie|Securite chantier|Lecture plans;2026-06-20
+M027;L027;O038;70;77;60;86;75;72;Recommande;Arts de table|Housekeeping;Communication|Service client;2026-06-20
+M028;L028;O029;20;84;60;94;75;55;Moyen;;Capteurs agricoles|SIG|Cooperatives|Gestion exploitation;2026-06-20
+M029;L029;O030;20;91;60;70;100;57;Moyen;;Controle qualite|Conditionnement|HACCP|Plantes medicinales;2026-06-20
+M030;L030;O032;20;58;60;78;75;47;Non prioritaire;;Psychologie enfant|Communication parentale|Accompagnement enfant|Activites prescolaires;2026-06-20
+M031;L031;O042;20;65;100;86;75;55;Moyen;;Fertilisation|Suivi cultures|Agriculture de precision|Capteurs agricoles;2026-06-20
+M032;L032;O034;20;72;60;94;75;52;Moyen;;Climatisation|Froid industriel|Electricite industrielle|Automatisme;2026-06-20
+M033;L033;O034;20;79;60;70;100;54;Moyen;;Climatisation|Froid industriel|Electricite industrielle|Automatisme;2026-06-20
+M034;L034;O034;20;86;60;78;75;54;Moyen;;Climatisation|Froid industriel|Electricite industrielle|Automatisme;2026-06-20
+M035;L035;O039;20;93;100;86;75;62;Moyen;;Environnement|HACCP|ISO 9001|ISO 14001;2026-06-20
+M036;L036;O041;20;60;60;94;75;49;Non prioritaire;;Premiers secours|Soins de base|Hygiene hospitaliere|Prise des constantes;2026-06-20
+M037;L037;O043;20;67;100;70;100;57;Moyen;;Extraction huiles essentielles|Controle qualite|Conditionnement|HACCP;2026-06-20
+M038;L038;O045;20;74;60;78;75;51;Moyen;;Communication parentale|Accompagnement enfant|Activites prescolaires|Inclusion;2026-06-20
+M039;L039;O046;20;81;60;86;75;53;Moyen;;Suivi chantier|Beton arme|Topographie|Securite chantier;2026-06-20
+M040;L040;O048;100;88;100;94;75;94;Tres recommande;Controle qualite|Process industriel|Maintenance industrielle|Production;;2026-06-20
+M041;L041;O050;20;55;60;70;100;48;Non prioritaire;;Adobe Photoshop|Adobe Illustrator|InDesign|Mise en page;2026-06-20
+M042;L042;O052;20;62;100;78;75;54;Moyen;;Audit QHSE|Analyse risques|Securite travail|Environnement;2026-06-20
+M043;L043;O043;20;69;60;86;75;50;Moyen;;Extraction huiles essentielles|Controle qualite|Conditionnement|HACCP;2026-06-20
+M044;L044;O046;20;76;100;94;75;59;Moyen;;Suivi chantier|Beton arme|Topographie|Securite chantier;2026-06-20
+M045;L045;O047;20;83;60;70;100;55;Moyen;;Energie solaire|Climatisation|Froid industriel|Electricite industrielle;2026-06-20
+M046;L046;O050;20;90;100;78;75;61;Moyen;;Adobe Photoshop|Adobe Illustrator|InDesign|Mise en page;2026-06-20
+M047;L047;O059;20;57;60;86;75;47;Non prioritaire;;Metre|Suivi chantier|Beton arme|Topographie;2026-06-20
+M048;L048;O050;20;64;100;94;75;56;Moyen;;Adobe Photoshop|Adobe Illustrator|InDesign|Mise en page;2026-06-20
+M049;L049;O052;20;71;60;70;100;52;Moyen;;Audit QHSE|Analyse risques|Securite travail|Environnement;2026-06-20
+M050;L050;O055;20;78;100;78;75;58;Moyen;;Cooperatives|Gestion exploitation|Irrigation|Fertilisation;2026-06-20
+M051;L051;O052;20;85;100;86;75;60;Moyen;;Audit QHSE|Analyse risques|Securite travail|Environnement;2026-06-20
+M052;L052;O063;20;92;60;94;75;57;Moyen;;Impression|Adobe Photoshop|Adobe Illustrator|InDesign;2026-06-20
+M053;L053;O062;100;59;100;70;100;87;Tres recommande;Relation client|ERP|Archivage|Comptabilite;;2026-06-20
+M054;L054;O060;20;66;60;78;75;49;Non prioritaire;;Maintenance electrique|Energie solaire|Climatisation|Froid industriel;2026-06-20
+M055;L055;O062;20;73;60;86;75;51;Moyen;;Relation client|ERP|Archivage|Comptabilite;2026-06-20
+M056;L056;O063;20;80;100;94;75;60;Moyen;;Impression|Adobe Photoshop|Adobe Illustrator|InDesign;2026-06-20
+M057;L057;O068;20;87;60;70;100;56;Moyen;;Agriculture de precision|Capteurs agricoles|SIG|Cooperatives;2026-06-20
+M058;L058;O059;20;94;60;78;75;56;Moyen;;Metre|Suivi chantier|Beton arme|Topographie;2026-06-20
+M059;L059;O060;20;61;60;86;75;48;Non prioritaire;;Maintenance electrique|Energie solaire|Climatisation|Froid industriel;2026-06-20
+M060;L060;O062;20;68;60;94;75;51;Moyen;;Relation client|ERP|Archivage|Comptabilite;2026-06-20
+M061;L061;O072;20;75;100;70;100;59;Moyen;;AutoCAD|Metre|Suivi chantier|Beton arme;2026-06-20
+M062;L062;O064;20;82;60;78;75;53;Moyen;;Communication|Service client|Reception|Gestion reservations;2026-06-20
+M063;L063;O064;20;89;60;86;75;55;Moyen;;Communication|Service client|Reception|Gestion reservations;2026-06-20
+M064;L064;O064;20;56;60;94;75;48;Non prioritaire;;Communication|Service client|Reception|Gestion reservations;2026-06-20
+M065;L065;O069;45;63;100;70;100;66;Recommande;Controle qualite;Sechage|Traçabilite|Extraction huiles essentielles;2026-06-20
+M066;L066;O071;95;70;60;78;75;80;Tres recommande;Inclusion|Animation pedagogique|Psychologie enfant;Activites prescolaires;2026-06-20
+M067;L067;O073;20;77;100;86;75;58;Moyen;;Schema electrique|Maintenance electrique|Energie solaire|Climatisation;2026-06-20
+M068;L068;O075;20;84;60;94;75;55;Moyen;;Gestion administrative|Facturation|Paie|Relation client;2026-06-20
+M069;L069;O001;20;91;100;70;100;63;Moyen;;Python|JavaScript|React|HTML;2026-06-20
+M070;L070;O003;20;58;60;78;75;47;Non prioritaire;;Suivi cultures|Agriculture de precision|Capteurs agricoles|SIG;2026-06-20
+M071;L071;O005;20;65;100;86;75;55;Moyen;;Maintenance vehicule|Controle qualite|Lean manufacturing|Diagnostic automobile;2026-06-20
+M072;L072;O007;20;72;60;94;75;52;Moyen;;Securite chantier|Lecture plans|AutoCAD|Metre;2026-06-20
+M073;L073;O073;20;79;60;70;100;54;Moyen;;Schema electrique|Maintenance electrique|Energie solaire|Climatisation;2026-06-20
+M074;L074;O001;20;86;60;78;75;54;Moyen;;Python|JavaScript|React|HTML;2026-06-20
+M075;L075;O002;20;93;60;86;75;56;Moyen;;Soins de base|Hygiene hospitaliere|Prise des constantes|Dossier patient;2026-06-20
+M076;L076;O005;95;60;60;94;75;79;Recommande;Controle qualite|Lean manufacturing|Diagnostic automobile;Maintenance vehicule;2026-06-20
+M077;L077;O014;20;67;100;70;100;57;Moyen;;JavaScript|React|HTML|CSS;2026-06-20
+M078;L078;O005;20;74;60;78;75;51;Moyen;;Maintenance vehicule|Controle qualite|Lean manufacturing|Diagnostic automobile;2026-06-20
+M079;L079;O007;20;81;100;86;75;59;Moyen;;Securite chantier|Lecture plans|AutoCAD|Metre;2026-06-20
+M080;L080;O010;20;88;60;94;75;56;Moyen;;Excel|Gestion administrative|Facturation|Paie;2026-06-20
+M081;L081;O007;20;55;60;70;100;48;Non prioritaire;;Securite chantier|Lecture plans|AutoCAD|Metre;2026-06-20
+M082;L082;O018;20;62;100;78;75;54;Moyen;;CAN Bus|Maintenance vehicule|Controle qualite|Lean manufacturing;2026-06-20
+M083;L083;O017;20;69;60;86;75;50;Moyen;;Conditionnement|HACCP|Plantes medicinales|Sechage;2026-06-20
+M084;L084;O015;20;76;60;94;75;53;Moyen;;Brancardage|Urgences|Premiers secours|Soins de base;2026-06-20
+M085;L085;O017;20;83;60;70;100;55;Moyen;;Conditionnement|HACCP|Plantes medicinales|Sechage;2026-06-20
+M086;L086;O018;20;90;60;78;75;55;Moyen;;CAN Bus|Maintenance vehicule|Controle qualite|Lean manufacturing;2026-06-20
+M087;L087;O023;20;57;100;86;75;53;Moyen;;ERP|Archivage|Comptabilite|Excel;2026-06-20
+M088;L088;O014;20;64;100;94;75;56;Moyen;;JavaScript|React|HTML|CSS;2026-06-20
+M089;L089;O015;70;71;60;70;100;72;Recommande;Premiers secours|Soins de base;Brancardage|Urgences;2026-06-20
+M090;L090;O017;20;78;60;78;75;52;Moyen;;Conditionnement|HACCP|Plantes medicinales|Sechage;2026-06-20
+M091;L001;O027;20;85;60;86;100;57;Moyen;;React|HTML|CSS|SQL;2026-06-20
+M092;L002;O019;20;92;100;94;75;63;Moyen;;Animation pedagogique|Psychologie enfant|Communication parentale|Accompagnement enfant;2026-06-20
+M093;L003;O019;20;59;100;70;75;52;Moyen;;Animation pedagogique|Psychologie enfant|Communication parentale|Accompagnement enfant;2026-06-20
+M094;L004;O019;20;66;100;78;75;55;Moyen;;Animation pedagogique|Psychologie enfant|Communication parentale|Accompagnement enfant;2026-06-20
+M095;L005;O024;20;73;60;86;100;54;Moyen;;InDesign|Mise en page|Prepress|Branding;2026-06-20
+M096;L006;O026;20;80;100;94;75;60;Moyen;;ISO 14001|ISO 45001|Audit QHSE|Analyse risques;2026-06-20
+M097;L007;O028;20;87;60;70;75;53;Moyen;;Prise des constantes|Dossier patient|Communication patient|Brancardage;2026-06-20
+M098;L008;O030;20;94;100;78;75;62;Moyen;;Controle qualite|Conditionnement|HACCP|Plantes medicinales;2026-06-20
+M099;L009;O031;20;61;100;86;100;57;Moyen;;OBD|CAN Bus|Maintenance vehicule|Controle qualite;2026-06-20
+M100;L010;O033;20;68;60;94;75;51;Moyen;;Beton arme|Topographie|Securite chantier|Lecture plans;2026-06-20
+M101;L011;O035;20;75;100;70;75;56;Moyen;;Process industriel|Maintenance industrielle|Production|Lean manufacturing;2026-06-20
+M102;L012;O037;70;82;60;78;75;73;Recommande;Prepress|Adobe Illustrator;InDesign|Mise en page;2026-06-20
+M103;L013;O028;20;89;60;86;100;58;Moyen;;Prise des constantes|Dossier patient|Communication patient|Brancardage;2026-06-20
+M104;L014;O031;20;56;60;94;75;48;Non prioritaire;;OBD|CAN Bus|Maintenance vehicule|Controle qualite;2026-06-20
+M105;L015;O032;20;63;60;70;75;47;Non prioritaire;;Psychologie enfant|Communication parentale|Accompagnement enfant|Activites prescolaires;2026-06-20
+M106;L016;O035;20;70;60;78;75;50;Moyen;;Process industriel|Maintenance industrielle|Production|Lean manufacturing;2026-06-20
+M107;L017;O044;20;77;100;86;100;61;Moyen;;Electronique embarquee|OBD|CAN Bus|Maintenance vehicule;2026-06-20
+M108;L018;O035;20;84;60;94;75;55;Moyen;;Process industriel|Maintenance industrielle|Production|Lean manufacturing;2026-06-20
+M109;L019;O037;20;91;100;70;75;60;Moyen;;Adobe Illustrator|InDesign|Mise en page|Prepress;2026-06-20
+M110;L020;O040;20;58;60;78;75;47;Non prioritaire;;HTML|CSS|SQL|Git;2026-06-20
+M111;L021;O037;20;65;60;86;100;52;Moyen;;Adobe Illustrator|InDesign|Mise en page|Prepress;2026-06-20
+M112;L022;O048;20;72;100;94;75;58;Moyen;;Controle qualite|Process industriel|Maintenance industrielle|Production;2026-06-20
+M113;L023;O047;20;79;60;70;75;51;Moyen;;Energie solaire|Climatisation|Froid industriel|Electricite industrielle;2026-06-20
+M114;L024;O045;20;86;60;78;75;54;Moyen;;Communication parentale|Accompagnement enfant|Activites prescolaires|Inclusion;2026-06-20
+M115;L025;O047;100;93;60;86;100;91;Tres recommande;Energie solaire|Climatisation|Froid industriel|Electricite industrielle;;2026-06-20
+M116;L026;O048;20;60;60;94;75;49;Non prioritaire;;Controle qualite|Process industriel|Maintenance industrielle|Production;2026-06-20
+M117;L027;O053;20;67;100;70;75;54;Moyen;;CSS|SQL|Git|Linux;2026-06-20
+M118;L028;O044;20;74;100;78;75;57;Moyen;;Electronique embarquee|OBD|CAN Bus|Maintenance vehicule;2026-06-20
+M119;L029;O045;20;81;60;86;100;56;Moyen;;Communication parentale|Accompagnement enfant|Activites prescolaires|Inclusion;2026-06-20
+M120;L030;O047;20;88;60;94;75;56;Moyen;;Energie solaire|Climatisation|Froid industriel|Electricite industrielle;2026-06-20

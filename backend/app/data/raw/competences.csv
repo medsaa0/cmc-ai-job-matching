@@ -1,0 +1,101 @@
+id_competence;competence;synonymes;categorie;domaine;poids;niveau_recommande
+C001;Python;python3|programmation python|scripting;Technique;Digital & IT;0.75;Intermediaire
+C002;JavaScript;javascript;Technique;Digital & IT;0.85;Avance
+C003;React;ReactJS|frontend react|interface web;Technique;Digital & IT;0.95;Debutant
+C004;HTML;html;Technique;Digital & IT;0.65;Intermediaire
+C005;CSS;css;Technique;Digital & IT;0.75;Avance
+C006;SQL;base de donnees|requetes SQL|MySQL|PostgreSQL;Technique;Digital & IT;0.85;Debutant
+C007;Git;git;Technique;Digital & IT;0.95;Intermediaire
+C008;Linux;linux;Technique;Digital & IT;0.65;Avance
+C009;Reseaux;reseaux;Technique;Digital & IT;0.75;Debutant
+C010;Support IT;support it;Technique;Digital & IT;0.85;Intermediaire
+C011;Docker;docker;Technique;Digital & IT;0.95;Avance
+C012;API REST;api rest;Technique;Digital & IT;0.65;Debutant
+C013;Premiers secours;secourisme|gestes urgence;Technique;Sante;0.75;Intermediaire
+C014;Soins de base;soins de base;Technique;Sante;0.85;Avance
+C015;Hygiene hospitaliere;hygiene hospitaliere;Technique;Sante;0.95;Debutant
+C016;Prise des constantes;prise des constantes;Technique;Sante;0.65;Intermediaire
+C017;Dossier patient;dossier patient;Technique;Sante;0.75;Avance
+C018;Communication patient;communication patient;Technique;Sante;0.85;Debutant
+C019;Brancardage;brancardage;Technique;Sante;0.95;Intermediaire
+C020;Urgences;urgences;Technique;Sante;0.65;Avance
+C021;Irrigation;irrigation;Technique;Agriculture;0.75;Debutant
+C022;Fertilisation;fertilisation;Technique;Agriculture;0.85;Intermediaire
+C023;Suivi cultures;suivi cultures;Technique;Agriculture;0.95;Avance
+C024;Agriculture de precision;smart farming|capteurs agricoles|agritech;Technique;Agriculture;0.65;Debutant
+C025;Capteurs agricoles;capteurs agricoles;Technique;Agriculture;0.75;Intermediaire
+C026;SIG;sig;Technique;Agriculture;0.85;Avance
+C027;Cooperatives;cooperatives;Technique;Agriculture;0.95;Debutant
+C028;Gestion exploitation;gestion exploitation;Technique;Agriculture;0.65;Intermediaire
+C029;Extraction huiles essentielles;extraction huiles essentielles;Technique;Agro-industrie;0.75;Avance
+C030;Controle qualite;controle qualite;Technique;Agro-industrie;0.85;Debutant
+C031;Conditionnement;conditionnement;Technique;Agro-industrie;0.95;Intermediaire
+C032;HACCP;hygiene alimentaire|securite alimentaire;Norme;Agro-industrie;0.65;Avance
+C033;Plantes medicinales;plantes medicinales;Technique;Agro-industrie;0.75;Debutant
+C034;Sechage;sechage;Technique;Agro-industrie;0.85;Intermediaire
+C035;Traçabilite;traçabilite;Technique;Agro-industrie;0.95;Avance
+C036;Diagnostic automobile;diagnostic automobile;Technique;Automobile;0.65;Debutant
+C037;Electronique embarquee;electronique embarquee;Technique;Automobile;0.75;Intermediaire
+C038;OBD;obd;Technique;Automobile;0.85;Avance
+C039;CAN Bus;can bus;Technique;Automobile;0.95;Debutant
+C040;Maintenance vehicule;maintenance vehicule;Technique;Automobile;0.65;Intermediaire
+C041;Controle qualite;controle qualite;Technique;Automobile;0.75;Avance
+C042;Lean manufacturing;lean manufacturing;Technique;Automobile;0.85;Debutant
+C043;Animation pedagogique;animation pedagogique;Technique;Education;0.95;Intermediaire
+C044;Psychologie enfant;psychologie enfant;Technique;Education;0.65;Avance
+C045;Communication parentale;communication parentale;Technique;Education;0.75;Debutant
+C046;Accompagnement enfant;accompagnement enfant;Technique;Education;0.85;Intermediaire
+C047;Activites prescolaires;activites prescolaires;Technique;Education;0.95;Avance
+C048;Inclusion;inclusion;Technique;Education;0.65;Debutant
+C049;Lecture plans;lecture plans;Technique;BTP;0.75;Intermediaire
+C050;AutoCAD;dessin technique|CAO|plans;Technique;BTP;0.85;Avance
+C051;Metre;metre;Technique;BTP;0.95;Debutant
+C052;Suivi chantier;suivi chantier;Technique;BTP;0.65;Intermediaire
+C053;Beton arme;beton arme;Technique;BTP;0.75;Avance
+C054;Topographie;topographie;Technique;BTP;0.85;Debutant
+C055;Securite chantier;securite chantier;Technique;BTP;0.95;Intermediaire
+C056;Electricite industrielle;electricite industrielle;Technique;Electricite & Energie;0.65;Avance
+C057;Automatisme;automatisme;Technique;Electricite & Energie;0.75;Debutant
+C058;Schema electrique;schema electrique;Technique;Electricite & Energie;0.85;Intermediaire
+C059;Maintenance electrique;maintenance electrique;Technique;Electricite & Energie;0.95;Avance
+C060;Energie solaire;energie solaire;Technique;Electricite & Energie;0.65;Debutant
+C061;Climatisation;climatisation;Technique;Electricite & Energie;0.75;Intermediaire
+C062;Froid industriel;froid industriel;Technique;Electricite & Energie;0.85;Avance
+C063;Maintenance industrielle;maintenance industrielle;Technique;Industrie;0.95;Debutant
+C064;Production;production;Technique;Industrie;0.65;Intermediaire
+C065;Lean manufacturing;lean manufacturing;Technique;Industrie;0.75;Avance
+C066;Gestion stock;gestion stock;Technique;Industrie;0.85;Debutant
+C067;5S;5s;Technique;Industrie;0.95;Intermediaire
+C068;Controle qualite;controle qualite;Technique;Industrie;0.65;Avance
+C069;Process industriel;process industriel;Technique;Industrie;0.75;Debutant
+C070;Comptabilite;comptabilite;Technique;Gestion;0.85;Intermediaire
+C071;Excel;excel;Technique;Gestion;0.95;Avance
+C072;Gestion administrative;gestion administrative;Technique;Gestion;0.65;Debutant
+C073;Facturation;facturation;Technique;Gestion;0.75;Intermediaire
+C074;Paie;paie;Technique;Gestion;0.85;Avance
+C075;Relation client;relation client;Technique;Gestion;0.95;Debutant
+C076;ERP;erp;Technique;Gestion;0.65;Intermediaire
+C077;Archivage;archivage;Technique;Gestion;0.75;Avance
+C078;Adobe Photoshop;adobe photoshop;Technique;Design & Communication;0.85;Debutant
+C079;Adobe Illustrator;adobe illustrator;Technique;Design & Communication;0.95;Intermediaire
+C080;InDesign;indesign;Technique;Design & Communication;0.65;Avance
+C081;Mise en page;mise en page;Technique;Design & Communication;0.75;Debutant
+C082;Prepress;prepress;Technique;Design & Communication;0.85;Intermediaire
+C083;Branding;branding;Technique;Design & Communication;0.95;Avance
+C084;Impression;impression;Technique;Design & Communication;0.65;Debutant
+C085;Service client;service client;Technique;Tourisme & Hotellerie;0.75;Intermediaire
+C086;Reception;reception;Technique;Tourisme & Hotellerie;0.85;Avance
+C087;Gestion reservations;gestion reservations;Technique;Tourisme & Hotellerie;0.95;Debutant
+C088;HACCP;hygiene alimentaire|securite alimentaire;Norme;Tourisme & Hotellerie;0.65;Intermediaire
+C089;Cuisine;cuisine;Technique;Tourisme & Hotellerie;0.75;Avance
+C090;Arts de table;arts de table;Technique;Tourisme & Hotellerie;0.85;Debutant
+C091;Housekeeping;housekeeping;Technique;Tourisme & Hotellerie;0.95;Intermediaire
+C092;Communication;communication;Technique;Tourisme & Hotellerie;0.65;Avance
+C093;ISO 9001;qualite|systeme management qualite;Norme;QHSE;0.75;Debutant
+C094;ISO 14001;iso 14001;Norme;QHSE;0.85;Intermediaire
+C095;ISO 45001;iso 45001;Norme;QHSE;0.95;Avance
+C096;Audit QHSE;audit qhse;Technique;QHSE;0.65;Debutant
+C097;Analyse risques;analyse risques;Technique;QHSE;0.75;Intermediaire
+C098;Securite travail;securite travail;Technique;QHSE;0.85;Avance
+C099;Environnement;environnement;Technique;QHSE;0.95;Debutant
+C100;HACCP;hygiene alimentaire|securite alimentaire;Norme;QHSE;0.65;Intermediaire

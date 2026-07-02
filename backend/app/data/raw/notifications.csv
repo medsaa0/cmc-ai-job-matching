@@ -1,0 +1,13 @@
+id_notification;id_laureat;id_offre;type_notification;message;statut;date_envoi
+N001;L001;O012;Email;Une offre compatible avec votre profil est disponible. Score de compatibilite: 74%. Decision: Recommande.;En attente;2026-06-20
+N002;L005;O009;Notification interne;Une offre compatible avec votre profil est disponible. Score de compatibilite: 71%. Decision: Recommande.;Envoyee;2026-06-20
+N003;L010;O018;Email;Une offre compatible avec votre profil est disponible. Score de compatibilite: 78%. Decision: Recommande.;Envoyee;2026-06-20
+N004;L014;O016;Notification interne;Une offre compatible avec votre profil est disponible. Score de compatibilite: 85%. Decision: Tres recommande.;Envoyee;2026-06-20
+N005;L027;O038;Email;Une offre compatible avec votre profil est disponible. Score de compatibilite: 72%. Decision: Recommande.;Envoyee;2026-06-20
+N006;L040;O048;Notification interne;Une offre compatible avec votre profil est disponible. Score de compatibilite: 94%. Decision: Tres recommande.;En attente;2026-06-20
+N007;L053;O062;Email;Une offre compatible avec votre profil est disponible. Score de compatibilite: 87%. Decision: Tres recommande.;Envoyee;2026-06-20
+N008;L066;O071;Notification interne;Une offre compatible avec votre profil est disponible. Score de compatibilite: 80%. Decision: Tres recommande.;Envoyee;2026-06-20
+N009;L076;O005;Email;Une offre compatible avec votre profil est disponible. Score de compatibilite: 79%. Decision: Recommande.;Envoyee;2026-06-20
+N010;L089;O015;Notification interne;Une offre compatible avec votre profil est disponible. Score de compatibilite: 72%. Decision: Recommande.;Envoyee;2026-06-20
+N011;L012;O037;Email;Une offre compatible avec votre profil est disponible. Score de compatibilite: 73%. Decision: Recommande.;En attente;2026-06-20
+N012;L025;O047;Notification interne;Une offre compatible avec votre profil est disponible. Score de compatibilite: 91%. Decision: Tres recommande.;Envoyee;2026-06-20
