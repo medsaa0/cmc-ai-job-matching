@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     # Analyse de CV via l'API Gemini (gratuite). Vide = analyse desactivee,
     # le texte brut du CV reste extrait mais sans structuration automatique.
     GEMINI_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-1.5-flash"
+    GEMINI_MODEL: str = "gemini-2.5-flash"
     DATA_DIR: Path = Path(__file__).parent.parent / "data" / "raw"
     UPLOAD_DIR: Path = Path(__file__).parent.parent.parent / "storage" / "uploads"
 
