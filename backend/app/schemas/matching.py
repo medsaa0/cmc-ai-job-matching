@@ -13,6 +13,7 @@ class MatchingResultOut(BaseModel):
     score_localisation: float
     score_experience: float
     score_disponibilite: float
+    score_questionnaire: float = 50.0
     score_final: float
     decision: str
     competences_communes: Optional[str] = None

@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard, Users, Briefcase, GitMerge, Bell,
   BookOpen, Award, Upload, LogOut, UserCircle, FileCheck,
-  Building2, PlusCircle, Download, ClipboardList,
+  Building2, PlusCircle, Download, ClipboardList, ListChecks,
 } from "lucide-react";
 import clsx from "clsx";
 import { clearSession } from "@/lib/auth";
@@ -27,6 +27,7 @@ const NAV_BY_ROLE: Record<"admin" | "laureat" | "entreprise", NavItem[]> = {
   laureat: [
     { href: "/candidat/offres", label: "Offres pour moi", icon: Briefcase },
     { href: "/candidat/candidatures", label: "Mes candidatures", icon: ClipboardList },
+    { href: "/candidat/matching", label: "Questionnaire matching", icon: ListChecks },
     { href: "/candidat/profil", label: "Mon profil", icon: UserCircle },
   ],
   entreprise: [

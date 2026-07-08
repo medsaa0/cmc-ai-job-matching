@@ -14,6 +14,7 @@ class MatchingResult(Base):
     score_localisation = Column(Float, default=0.0)
     score_experience = Column(Float, default=0.0)
     score_disponibilite = Column(Float, default=0.0)
+    score_questionnaire = Column(Float, default=0.0)
     score_final = Column(Float, default=0.0)
     decision = Column(String(50))
     competences_communes = Column(Text)

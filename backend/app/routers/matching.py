@@ -2,10 +2,14 @@ from fastapi import APIRouter, Depends, BackgroundTasks
 from sqlalchemy.orm import Session
 from typing import Optional
 from app.core.database import get_db
-from app.core.security import require_admin, get_current_user
+from app.core.security import require_admin, require_role, get_current_user
 from app.models.matching import MatchingResult
 from app.schemas.matching import MatchingResultOut, MatchingRunRequest
+from app.schemas.questionnaire import (
+    QuestionnaireOut, ReponsesQuestionnaireIn, ReponsesQuestionnaireOut,
+)
 from app.services.matching_service import run_matching
+from app.services.questionnaire_service import get_questionnaire, save_reponses
 
 router = APIRouter(prefix="/api/matching", tags=["Matching"])
 
@@ -92,3 +96,19 @@ def top_laureats(
         .limit(limit)
         .all()
     )
+
+
+@router.get("/questionnaire", response_model=QuestionnaireOut)
+def questionnaire(db: Session = Depends(get_db), _=Depends(get_current_user)):
+    return get_questionnaire(db)
+
+
+@router.post("/questionnaire/reponses", response_model=ReponsesQuestionnaireOut)
+def questionnaire_reponses(
+    data: ReponsesQuestionnaireIn,
+    db: Session = Depends(get_db),
+    current_user=Depends(require_role("laureat")),
+):
+    reponses = save_reponses(db, current_user.id_laureat, data.reponses)
+    run_matching(db, id_laureat=current_user.id_laureat)
+    return reponses

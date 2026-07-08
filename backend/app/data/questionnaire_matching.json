@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "questions": [
+    {
+      "id": "competences_maitrisees",
+      "dimension": "competences",
+      "intitule": "Parmi vos compétences, lesquelles maîtrisez-vous réellement (pas juste vues en cours) ?",
+      "type": "multi_choice",
+      "options_source": "competences",
+      "poids": 0.5,
+      "aide": "Alimente score_competences : recalcule le recouvrement compétences lauréat/offre avec une liste confirmée par vous."
+    },
+    {
+      "id": "niveau_competences",
+      "dimension": "competences",
+      "intitule": "Sur une échelle de 1 à 5, comment évaluez-vous votre niveau global sur ces compétences ?",
+      "type": "echelle_1_5",
+      "poids": 0.5,
+      "aide": "Pondère score_competences : un niveau auto-évalué faible/fort ajuste le score à la baisse/hausse (facteur 0.85 à 1.15)."
+    },
+    {
+      "id": "nb_projets",
+      "dimension": "experience",
+      "intitule": "Combien de projets concrets avez-vous réalisés (personnels, scolaires ou professionnels) ?",
+      "type": "single_choice",
+      "options": ["Aucun", "1 à 2", "3 à 5", "Plus de 5"],
+      "poids": 0.5,
+      "aide": "Alimente score_experience : plus de projets réalisés = experience plus solide."
+    },
+    {
+      "id": "a_fait_stage_ou_alternance",
+      "dimension": "experience",
+      "intitule": "Avez-vous déjà fait un stage, une alternance ou un emploi dans votre domaine ?",
+      "type": "booleen",
+      "poids": 0.5,
+      "aide": "Alimente score_experience : une experience terrain (stage/alternance/emploi) est plus discriminante qu'un simple projet."
+    },
+    {
+      "id": "domaines_vises",
+      "dimension": "domaine",
+      "intitule": "Quel(s) domaine(s) de poste recherchez-vous en priorité ?",
+      "type": "multi_choice",
+      "options_source": "domaines",
+      "poids": 1.0,
+      "aide": "Confirme/precise le domaine du laureat pour le filtrage de la Tache 2 quand la filiere seule est ambigue."
+    },
+    {
+      "id": "villes_acceptees",
+      "dimension": "mobilite",
+      "intitule": "Dans quelles villes seriez-vous prêt(e) à travailler ?",
+      "type": "multi_choice",
+      "options_source": "villes",
+      "poids": 0.6,
+      "aide": "Met a jour Laureat.mobilite, utilise directement par score_localisation."
+    },
+    {
+      "id": "mobilite_nationale",
+      "dimension": "mobilite",
+      "intitule": "Êtes-vous prêt(e) à déménager n'importe où au Maroc pour ce poste ?",
+      "type": "booleen",
+      "poids": 0.4,
+      "aide": "Si oui, assouplit score_localisation (aucune ville n'est bloquante)."
+    },
+    {
+      "id": "disponibilite",
+      "dimension": "disponibilite",
+      "intitule": "À partir de quand êtes-vous disponible ?",
+      "type": "single_choice",
+      "options": ["Immédiatement", "Dans 1 mois", "Après mon stage/PFE", "Date à définir"],
+      "poids": 1.0,
+      "aide": "Met a jour Laureat.disponibilite, utilise directement par score_disponibilite."
+    },
+    {
+      "id": "soft_skill_travail_equipe",
+      "dimension": "soft_skills",
+      "intitule": "Face à un désaccord dans une équipe projet, à quel point êtes-vous à l'aise pour proposer un compromis ?",
+      "type": "echelle_1_5",
+      "poids": 0.5,
+      "aide": "Alimente score_questionnaire (mise en situation : travail d'equipe)."
+    },
+    {
+      "id": "soft_skill_autonomie",
+      "dimension": "soft_skills",
+      "intitule": "Face à un blocage technique sans aide immédiate disponible, à quel point êtes-vous autonome pour trouver une solution ?",
+      "type": "echelle_1_5",
+      "poids": 0.5,
+      "aide": "Alimente score_questionnaire (mise en situation : autonomie)."
+    }
+  ]
+}

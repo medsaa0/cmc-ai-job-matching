@@ -163,6 +163,21 @@ export interface CandidatureOffreStats {
   top_competences_manquantes: [string, number][];
 }
 
+export interface QuestionnaireQuestion {
+  id: string;
+  dimension: string;
+  intitule: string;
+  type: "single_choice" | "multi_choice" | "echelle_1_5" | "booleen" | "texte";
+  poids: number;
+  aide?: string | null;
+  options?: string[] | { id_competence: string; competence: string }[] | null;
+}
+
+export interface Questionnaire {
+  version: number;
+  questions: QuestionnaireQuestion[];
+}
+
 export interface Notification {
   id: number;
   id_laureat: string;

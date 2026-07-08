@@ -6,7 +6,7 @@ from app.core.database import engine, Base
 from app.core.security import hash_password
 from app.models import (
     User, Filiere, Competence, Laureat, Offre, MatchingResult, Notification,
-    Entreprise, Document, Candidature, OffreCompetenceRequise,
+    Entreprise, Document, Candidature, OffreCompetenceRequise, ReponsesQuestionnaire,
 )
 from app.routers import (
     auth, filieres, competences, laureats, offres, matching, notifications, dashboard,

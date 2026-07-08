@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from app.core.database import Base
 from app.models import (
     User, Filiere, Competence, Laureat, Offre, MatchingResult, Notification,
-    Entreprise, Document, Candidature, OffreCompetenceRequise,
+    Entreprise, Document, Candidature, OffreCompetenceRequise, ReponsesQuestionnaire,
 )
 
 config = context.config

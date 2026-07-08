@@ -6,6 +6,7 @@ from app.models.laureat import Laureat
 from app.models.offre import Offre
 from app.models.matching import MatchingResult
 from app.models.competence import Competence
+from app.models.reponses_questionnaire import ReponsesQuestionnaire
 from app.utils.text_cleaning import normalize, parse_list
 from app.utils.domaine_matching import (
     build_filiere_domaine_map,
@@ -21,6 +22,7 @@ from app.utils.scoring import (
     score_to_decision,
 )
 from app.services.nlp_service import compute_tfidf_similarity
+from app.services.questionnaire_service import competences_factor, score_questionnaire
 
 logger = logging.getLogger(__name__)
 
@@ -71,6 +73,14 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
     # Domaine de chaque offre calcule une seule fois (evite de le refaire pour chaque laureat)
     offre_domaines = {offre.id_offre: get_offre_domaine(offre) for offre in offres}
 
+    # Reponses au questionnaire de chaque laureat, calculees une seule fois par laureat
+    reponses_map = {
+        r.id_laureat: r
+        for r in db.query(ReponsesQuestionnaire)
+        .filter(ReponsesQuestionnaire.id_laureat.in_([l.id_laureat for l in laureats]))
+        .all()
+    }
+
     count = 0
     for laureat in laureats:
         laureat_domaine = get_laureat_domaine(laureat, filiere_domaine_map)
@@ -78,6 +88,9 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
         cv_full = " ".join(filter(None, [
             laureat.cv_text, laureat.experiences, laureat.certifications, laureat.soft_skills
         ]))
+        reponses = reponses_map.get(laureat.id_laureat)
+        comp_factor = competences_factor(reponses)  # 1.0 si pas de questionnaire rempli
+        sq = score_questionnaire(reponses)  # 50.0 (neutre) si pas de questionnaire rempli
 
         for offre in offres:
             compatible, sdom = evaluate_domaine(laureat_domaine, offre_domaines[offre.id_offre])
@@ -94,14 +107,15 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
                 continue
 
             o_comps = _normalize_competences(offre.competences_requises or "", syn_map)
-            sc, communes, manquantes = _score_competences(l_comps, o_comps)
+            sc_brut, communes, manquantes = _score_competences(l_comps, o_comps)
+            sc = round(min(100.0, sc_brut * comp_factor), 2)
 
             offre_text = " ".join(filter(None, [offre.description, offre.titre_poste, offre.competences_requises]))
             scv = compute_tfidf_similarity(cv_full, offre_text)
             sl = score_localisation(laureat.localisation or "", offre.localisation or "", laureat.mobilite or "")
             se = score_experience(laureat.experiences or "")
             sd = score_disponibilite(laureat.disponibilite or "")
-            sf = compute_score_final(sc, scv, sdom, sl, se, sd)
+            sf = compute_score_final(sc, scv, sdom, sl, se, sd, sq)
             decision = score_to_decision(sf)
 
             if existing:
@@ -111,6 +125,7 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
                 existing.score_localisation = sl
                 existing.score_experience = se
                 existing.score_disponibilite = sd
+                existing.score_questionnaire = sq
                 existing.score_final = sf
                 existing.decision = decision
                 existing.competences_communes = "|".join(communes)
@@ -126,6 +141,7 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
                     score_localisation=sl,
                     score_experience=se,
                     score_disponibilite=sd,
+                    score_questionnaire=sq,
                     score_final=sf,
                     decision=decision,
                     competences_communes="|".join(communes),

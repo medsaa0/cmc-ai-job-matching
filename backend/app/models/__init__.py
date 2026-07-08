@@ -9,3 +9,4 @@ from app.models.notification import Notification
 from app.models.document import Document
 from app.models.candidature import Candidature
 from app.models.offre_competence import OffreCompetenceRequise
+from app.models.reponses_questionnaire import ReponsesQuestionnaire

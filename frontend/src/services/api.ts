@@ -126,6 +126,9 @@ export const matchingApi = {
     api.get(`/api/matching/top-offres/${id}`, { params: { limit } }),
   topLaureats: (id: string, limit = 10) =>
     api.get(`/api/matching/top-laureats/${id}`, { params: { limit } }),
+  questionnaire: () => api.get("/api/matching/questionnaire"),
+  submitReponses: (reponses: Record<string, unknown>) =>
+    api.post("/api/matching/questionnaire/reponses", { reponses }),
 };
 
 export const notificationsApi = {

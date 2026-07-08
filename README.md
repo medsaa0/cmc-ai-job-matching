@@ -139,14 +139,29 @@ Authorization: Bearer <token_admin>
 
 ## Moteur de matching
 
-Le score final est calculé selon la formule :
+### Filtrage par domaine (obligatoire)
+
+Avant tout calcul de score, `run_matching` vérifie la compatibilité de domaine entre le lauréat (déduit de sa filière via la table `filieres`) et l'offre (`Offre.domaine` / `Offre.filiere_requise`), avec une table de synonymes extensible (`backend/app/utils/domaine_matching.py`). En mode par défaut (`MATCHING_DOMAINE_MODE=hard`), **aucun `MatchingResult` n'est créé** pour une paire hors-domaine (ex. un lauréat "Développement Digital" ne reçoit jamais d'offre "Santé"). Si la filière du lauréat ou le domaine de l'offre est inconnu, le matching n'est jamais bloqué : un score neutre (`score_domaine = 50`) est appliqué et un warning est loggé.
+
+### Questionnaire de matching (optionnel, affine le score)
+
+Un lauréat peut remplir un questionnaire guidé (`GET /api/matching/questionnaire`, réponses via `POST /api/matching/questionnaire/reponses`) qui :
+- confirme ses compétences réellement maîtrisées et son niveau auto-évalué (1-5) → ajuste `score_competences` d'un facteur 0.85 à 1.15
+- met à jour son profil (mobilité, disponibilité, expérience terrain) → ces champs sont relus directement par `score_localisation`, `score_disponibilite`, `score_experience`
+- deux mises en situation soft skills (1-5) → alimentent `score_questionnaire`
+
+Sans questionnaire rempli, tous ces signaux restent neutres (facteur `1.0`, `score_questionnaire = 50`) : le matching se comporte exactement comme avant, rétro-compatible.
+
+### Formule du score final
 
 ```
-score_final = 0.40 × score_compétences
-            + 0.25 × score_cv_offre
-            + 0.15 × score_localisation
-            + 0.10 × score_expérience
-            + 0.10 × score_disponibilité
+score_final = 0.30 × score_competences     (recouvrement competences, ajuste par le questionnaire)
+            + 0.15 × score_cv_offre        (similarite TF-IDF CV <-> offre)
+            + 0.15 × score_domaine         (compatibilite domaine/filiere)
+            + 0.15 × score_localisation    (ville / mobilite)
+            + 0.10 × score_experience      (experience deduite du profil)
+            + 0.05 × score_disponibilite   (delai de disponibilite)
+            + 0.10 × score_questionnaire   (soft skills du questionnaire, neutre a 50 si non rempli)
 ```
 
 | Score | Décision |
@@ -156,7 +171,7 @@ score_final = 0.40 × score_compétences
 | ≥ 50 | Moyen |
 | < 50 | Non prioritaire |
 
-Le score est recalculé automatiquement à chaque inscription/mise à jour de profil lauréat et à chaque création/modification d'offre. Un recalcul global reste disponible depuis l'espace Admin (page **Matching**).
+Le score est recalculé automatiquement à chaque inscription/mise à jour de profil lauréat, à chaque création/modification d'offre, et à chaque soumission du questionnaire. Un recalcul global reste disponible depuis l'espace Admin (page **Matching**).
 
 ---
 
@@ -190,19 +205,28 @@ GET  /api/documents/{id}/download
 
 POST /api/candidatures/
 GET  /api/candidatures/me
-GET  /api/candidatures/offre/{id_offre}
+GET  /api/candidatures/offre/{id_offre}          # candidatures enrichies (profil + scores), filtres ?statut= ?decision= ?score_min=
+GET  /api/candidatures/offre/{id_offre}/stats     # nb candidatures, repartition statut/decision, score moyen, top competences manquantes
 PATCH /api/candidatures/{id}/statut
 
 POST /api/matching/run
+GET  /api/matching/results
+GET  /api/matching/laureat/{id_laureat}
+GET  /api/matching/offre/{id_offre}
 GET  /api/matching/top-offres/{id_laureat}
 GET  /api/matching/top-laureats/{id_offre}
+GET  /api/matching/questionnaire                  # structure du questionnaire guide
+POST /api/matching/questionnaire/reponses          # lauréat connecté : enregistre ses reponses + relance son matching
 
 GET  /api/export/laureats.csv
 GET  /api/export/offres.csv
 GET  /api/export/matching/offre/{id_offre}.csv
 
 GET  /api/dashboard/public-stats
-GET  /api/dashboard/stats
+GET  /api/dashboard/stats                          # inclut candidatures_par_offre, taux de conversion, etc.
+GET  /api/dashboard/offre/{id_offre}/detail         # admin uniquement
+GET  /api/dashboard/laureat/{id_laureat}/detail     # admin uniquement
+GET  /api/dashboard/entreprise/{id}/detail          # admin uniquement
 
 POST /api/import/all
 ```

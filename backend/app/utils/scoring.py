@@ -41,13 +41,18 @@ def score_disponibilite(disponibilite: str) -> float:
 
 
 def compute_score_final(
-    sc: float, scv: float, sdom: float, sl: float, se: float, sd: float
+    sc: float, scv: float, sdom: float, sl: float, se: float, sd: float, sq: float = 50.0
 ) -> float:
     # Ponderation (somme = 1.0) :
-    #   competences   35% (sc)   - recouvrement competences requises / possedees
-    #   cv_offre      20% (scv)  - similarite TF-IDF texte CV <-> texte offre
+    #   competences   30% (sc)   - recouvrement competences requises/possedees, ajuste par le
+    #                              niveau auto-evalue du questionnaire (voir questionnaire_service.competences_factor)
+    #   cv_offre      15% (scv)  - similarite TF-IDF texte CV <-> texte offre
     #   domaine       15% (sdom) - compatibilite domaine/filiere (voir domaine_matching.py)
-    #   localisation  15% (sl)   - correspondance ville / mobilite
-    #   experience    10% (se)   - niveau d'experience deduit du profil
-    #   disponibilite  5% (sd)   - delai de disponibilite du laureat
-    return round(0.35 * sc + 0.20 * scv + 0.15 * sdom + 0.15 * sl + 0.10 * se + 0.05 * sd, 2)
+    #   localisation  15% (sl)   - correspondance ville / mobilite (precisee par le questionnaire si rempli)
+    #   experience    10% (se)   - niveau d'experience deduit du profil (precise par le questionnaire si rempli)
+    #   disponibilite  5% (sd)   - delai de disponibilite du laureat (precise par le questionnaire si rempli)
+    #   questionnaire 10% (sq)   - mises en situation soft skills du questionnaire ; 50.0 (neutre) si
+    #                              le laureat n'a pas rempli le questionnaire -> retro-compatible
+    return round(
+        0.30 * sc + 0.15 * scv + 0.15 * sdom + 0.15 * sl + 0.10 * se + 0.05 * sd + 0.10 * sq, 2
+    )
