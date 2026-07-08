@@ -11,6 +11,10 @@ class Settings(BaseSettings):
     # "hard" = les offres hors-domaine sont exclues du matching (aucun MatchingResult cree)
     # "soft" = toutes les paires sont scorees, le score_domaine penalise juste les offres hors-domaine
     MATCHING_DOMAINE_MODE: str = "hard"
+    # Analyse de CV via l'API Gemini (gratuite). Vide = analyse desactivee,
+    # le texte brut du CV reste extrait mais sans structuration automatique.
+    GEMINI_API_KEY: str = ""
+    GEMINI_MODEL: str = "gemini-1.5-flash"
     DATA_DIR: Path = Path(__file__).parent.parent / "data" / "raw"
     UPLOAD_DIR: Path = Path(__file__).parent.parent.parent / "storage" / "uploads"
 

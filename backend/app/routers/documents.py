@@ -1,3 +1,4 @@
+import json
 import uuid
 from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
@@ -9,6 +10,8 @@ from app.core.security import get_current_user, require_role
 from app.models.document import Document
 from app.models.laureat import Laureat
 from app.schemas.document import DocumentOut
+from app.services.cv_analysis_service import analyze_cv, apply_analysis_to_laureat
+from app.services.matching_service import run_matching
 
 router = APIRouter(prefix="/api/documents", tags=["Documents"])
 
@@ -52,10 +55,21 @@ def upload_document(
     content = file.file.read()
     dest_path.write_bytes(content)
 
+    matching_a_relancer = False
+
     if type == "CV" and ext == ".pdf":
         extracted = _extract_pdf_text(dest_path)
         if extracted.strip():
             laureat.cv_text = extracted
+
+            analysis = analyze_cv(extracted)
+            if analysis is not None:
+                apply_analysis_to_laureat(laureat, analysis)
+                laureat.cv_analyse_json = json.dumps(analysis, ensure_ascii=False)
+                laureat.cv_analyse_statut = "ok"
+                matching_a_relancer = True
+            else:
+                laureat.cv_analyse_statut = "desactivee" if not settings.GEMINI_API_KEY else "echec"
         laureat.cv_file_path = str(dest_path)
         db.add(laureat)
 
@@ -68,6 +82,10 @@ def upload_document(
     db.add(doc)
     db.commit()
     db.refresh(doc)
+
+    if matching_a_relancer:
+        run_matching(db, id_laureat=id_laureat)
+
     return doc
 
 

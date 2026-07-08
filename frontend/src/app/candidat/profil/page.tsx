@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Download, FileText } from "lucide-react";
+import { Download, FileText, Sparkles, AlertTriangle } from "lucide-react";
 import SkillPicker from "@/components/SkillPicker";
 import { laureatsApi, documentsApi } from "@/services/api";
-import type { Laureat, DocumentItem } from "@/types";
+import type { Laureat, DocumentItem, CvAnalyse } from "@/types";
 
 const DOC_TYPES = [
   { value: "CV", label: "CV" },
@@ -35,6 +35,8 @@ export default function CandidatProfilPage() {
   useEffect(load, []);
 
   if (!laureat) return <p className="text-gray-400">Chargement...</p>;
+
+  const cvAnalyse: CvAnalyse | null = laureat.cv_analyse_json ? JSON.parse(laureat.cv_analyse_json) : null;
 
   const set = (field: keyof Laureat) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setLaureat({ ...laureat, [field]: e.target.value } as Laureat);
@@ -189,7 +191,62 @@ export default function CandidatProfilPage() {
             Ajouter
           </button>
         </div>
+
+        {laureat.cv_analyse_statut === "echec" && (
+          <div className="flex items-center gap-2 bg-amber-50 text-amber-700 text-sm p-3 rounded-lg">
+            <AlertTriangle size={16} />
+            L&apos;analyse automatique de votre CV a échoué. Vos compétences et expériences ci-dessus restent
+            à compléter manuellement.
+          </div>
+        )}
       </div>
+
+      {cvAnalyse && (
+        <div className="card space-y-4">
+          <h2 className="font-bold text-gray-900 flex items-center gap-2">
+            <Sparkles size={18} className="text-primary" /> Analyse automatique du CV
+          </h2>
+          <p className="text-xs text-gray-400 -mt-2">
+            Détecté automatiquement à partir de votre CV. Vos compétences ont déjà été ajoutées ci-dessus ;
+            vérifiez et corrigez si besoin.
+          </p>
+
+          {cvAnalyse.competences.length > 0 && (
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-1">Compétences détectées</p>
+              <div className="flex flex-wrap gap-1">
+                {cvAnalyse.competences.map((c) => (
+                  <span key={c} className="badge bg-blue-50 text-blue-700 text-xs">{c}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {cvAnalyse.experiences.length > 0 && (
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-1">Expériences détectées</p>
+              <ul className="space-y-1 text-sm text-gray-600">
+                {cvAnalyse.experiences.map((e, i) => (
+                  <li key={i}>
+                    <span className="font-medium text-gray-800">{e.poste}</span> — {e.entreprise} ({e.periode})
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {cvAnalyse.formations.length > 0 && (
+            <div>
+              <p className="text-sm font-medium text-gray-700 mb-1">Formations détectées</p>
+              <ul className="space-y-1 text-sm text-gray-600">
+                {cvAnalyse.formations.map((f, i) => (
+                  <li key={i}>{f.diplome} — {f.etablissement} ({f.annee})</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -20,6 +20,8 @@ class Laureat(Base):
     experiences = Column(Text)
     cv_text = Column(Text)
     cv_file_path = Column(String(500), nullable=True)
+    cv_analyse_json = Column(Text, nullable=True)
+    cv_analyse_statut = Column(String(20), nullable=True)  # "ok" | "echec" | "desactivee" | None
     localisation = Column(String(100))
     mobilite = Column(Text)
     disponibilite = Column(String(100))

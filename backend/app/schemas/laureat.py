@@ -32,6 +32,8 @@ class LaureatCreate(LaureatBase):
 class LaureatOut(LaureatBase):
     id: int
     created_at: Optional[datetime] = None
+    cv_analyse_json: Optional[str] = None
+    cv_analyse_statut: Optional[str] = None
 
     model_config = {"from_attributes": True}
 

@@ -83,6 +83,20 @@ export interface Laureat {
   linkedin: string;
   github_portfolio: string;
   statut_profil: string;
+  cv_analyse_json?: string | null;
+  cv_analyse_statut?: string | null;
+}
+
+export interface CvAnalyse {
+  nom: string | null;
+  prenom: string | null;
+  email: string | null;
+  telephone: string | null;
+  competences: string[];
+  soft_skills: string[];
+  langues: string[];
+  experiences: { poste: string; entreprise: string; periode: string; description: string }[];
+  formations: { diplome: string; etablissement: string; annee: string }[];
 }
 
 export interface Offre {

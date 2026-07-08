@@ -10,7 +10,7 @@ Permettre au CMC de centraliser les profils de ses lauréats et les offres des e
 
 ## Fonctionnalités
 
-- **Lauréats** : inscription en ligne (profil, diplôme, filière, compétences), upload de CV et documents (extraction automatique du texte du CV), consultation des offres **de leur domaine uniquement** classées par score de compatibilité, questionnaire guidé pour affiner leur score, candidature en ligne, suivi des candidatures.
+- **Lauréats** : inscription en ligne (profil, diplôme, filière, compétences), upload de CV et documents (extraction du texte + **analyse structurée automatique par IA** — compétences, expériences, formations, voir [Analyse du CV](#analyse-du-cv-par-ia)), consultation des offres **de leur domaine uniquement** classées par score de compatibilité, questionnaire guidé pour affiner leur score, candidature en ligne, suivi des candidatures.
 - **Entreprises** : inscription en ligne (validée par le CMC avant publication), dépôt d'offres via un formulaire guidé (poste, diplôme/filière requis, compétences avec niveau d'importance), **vue classée et filtrable des candidats ayant postulé** (score détaillé, compétences communes/manquantes, changement de statut), export CSV du classement.
 - **Administration CMC** : validation des comptes entreprises, création d'offres au nom du CMC, gestion des lauréats/offres/filières/compétences, import CSV en masse, export CSV, tableau de bord avec statistiques complètes (candidatures par offre/entreprise, taux de conversion) et pages de détail (drill-down offre/lauréat/entreprise).
 - **Moteur de matching** : score pondéré (compétences, similarité CV/offre par TF-IDF, **compatibilité de domaine/filière**, localisation, expérience, disponibilité, **questionnaire**), calculé automatiquement à chaque création/mise à jour de profil ou d'offre, et disponible dans les deux sens (offres → lauréat, lauréats → offre). Voir [Moteur de matching](#moteur-de-matching).
@@ -172,6 +172,19 @@ score_final = 0.30 × score_competences     (recouvrement competences, ajuste pa
 | < 50 | Non prioritaire |
 
 Le score est recalculé automatiquement à chaque inscription/mise à jour de profil lauréat, à chaque création/modification d'offre, et à chaque soumission du questionnaire. Un recalcul global reste disponible depuis l'espace Admin (page **Matching**).
+
+---
+
+## Analyse du CV par IA
+
+À l'upload d'un CV (PDF), le texte est d'abord extrait tel quel (`pypdf`) et stocké dans `Laureat.cv_text` — c'est ce texte brut qui alimente le score de similarité TF-IDF. En complément, si une clé Gemini est configurée, ce texte est envoyé à l'API Gemini (`backend/app/services/cv_analysis_service.py`) qui renvoie un JSON structuré : compétences, soft skills, langues, expériences (poste/entreprise/période), formations. Les compétences et expériences détectées sont **fusionnées automatiquement** dans le profil du lauréat (sans écraser ce qu'il a déjà renseigné), puis son matching est relancé.
+
+**Configuration** (facultative, désactivée par défaut) :
+1. Créer une clé gratuite sur https://aistudio.google.com/apikey
+2. L'ajouter dans `.env` à la racine du projet : `GEMINI_API_KEY=votre_cle`
+3. Relancer `docker compose up -d --build backend`
+
+Sans clé configurée, l'extraction du texte brut continue de fonctionner normalement (rétro-compatible) ; `Laureat.cv_analyse_statut` vaut alors `"desactivee"`. En cas d'échec de l'appel API (quota, réseau, réponse invalide), le statut passe à `"echec"` et un avertissement est affiché au lauréat — l'upload du CV n'échoue jamais à cause de l'analyse IA. Le résultat détaillé (compétences/expériences/formations détectées) est visible sur la page **Mon profil** de l'espace Lauréat.
 
 ---
 
