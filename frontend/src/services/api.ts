@@ -138,6 +138,9 @@ export const notificationsApi = {
 export const dashboardApi = {
   stats: () => api.get("/api/dashboard/stats"),
   publicStats: () => api.get("/api/dashboard/public-stats"),
+  offreDetail: (id_offre: string) => api.get(`/api/dashboard/offre/${id_offre}/detail`),
+  laureatDetail: (id_laureat: string) => api.get(`/api/dashboard/laureat/${id_laureat}/detail`),
+  entrepriseDetail: (id: number) => api.get(`/api/dashboard/entreprise/${id}/detail`),
 };
 
 export const importApi = {

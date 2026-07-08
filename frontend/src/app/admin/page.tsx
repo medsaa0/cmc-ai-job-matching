@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { dashboardApi } from "@/services/api";
 import { DashboardStats } from "@/types";
 import StatCard from "@/components/StatCard";
-import { Users, Briefcase, BookOpen, Award, GitMerge, Bell, TrendingUp } from "lucide-react";
+import { Users, Briefcase, BookOpen, Award, GitMerge, Bell, TrendingUp, ClipboardList } from "lucide-react";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend,
@@ -49,6 +50,8 @@ export default function DashboardPage() {
         <StatCard title="Score moyen" value={`${stats.score_moyen}%`} icon={TrendingUp} color="blue" />
         <StatCard title="Notifications" value={stats.notifications_attente} icon={Bell} color="orange" subtitle="En attente" />
         <StatCard title="Envoyées" value={stats.notifications_envoyees} icon={Bell} color="green" subtitle="Notifications" />
+        <StatCard title="Candidatures" value={stats.nb_candidatures_total} icon={ClipboardList} color="purple" subtitle={`${stats.candidatures_cette_semaine} cette semaine`} />
+        <StatCard title="Taux candidature/offre" value={stats.taux_conversion_candidatures_par_offre} icon={TrendingUp} color="teal" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -108,6 +111,44 @@ export default function DashboardPage() {
                 </div>
               ))}
           </div>
+        </div>
+      </div>
+
+      <div className="card p-0 overflow-hidden">
+        <div className="px-4 py-3 border-b border-gray-100">
+          <h2 className="font-semibold text-gray-800">Candidatures par offre</h2>
+          <p className="text-xs text-gray-400">Triées par nombre de candidatures décroissant</p>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
+              <tr>
+                <th className="text-left px-4 py-2">Offre</th>
+                <th className="text-left px-4 py-2">Entreprise</th>
+                <th className="text-left px-4 py-2">Candidatures</th>
+                <th className="text-left px-4 py-2">Score moyen</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stats.candidatures_par_offre.slice(0, 15).map((row) => (
+                <tr key={row.id_offre} className="border-t border-gray-100 hover:bg-gray-50">
+                  <td className="px-4 py-2">
+                    <Link href={`/admin/offres/${row.id_offre}/detail`} className="text-blue-700 font-medium hover:underline">
+                      {row.titre_poste}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-2 text-gray-600">{row.entreprise}</td>
+                  <td className="px-4 py-2 font-bold text-gray-900">{row.nb_candidatures}</td>
+                  <td className="px-4 py-2 text-gray-600">
+                    {row.score_moyen !== null ? `${Math.round(row.score_moyen)}%` : "—"}
+                  </td>
+                </tr>
+              ))}
+              {stats.candidatures_par_offre.length === 0 && (
+                <tr><td colSpan={4} className="px-4 py-6 text-center text-gray-400">Aucune candidature pour le moment.</td></tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

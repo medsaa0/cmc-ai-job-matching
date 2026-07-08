@@ -187,4 +187,22 @@ export interface DashboardStats {
   offres_par_domaine: Record<string, number>;
   laureats_par_filiere: Record<string, number>;
   decisions_count: Record<string, number>;
+  offres_par_statut: Record<string, number>;
+  entreprises_par_statut_validation: Record<string, number>;
+  nb_candidatures_total: number;
+  candidatures_par_statut: Record<string, number>;
+  candidatures_aujourd_hui: number;
+  candidatures_cette_semaine: number;
+  candidatures_par_offre: {
+    id_offre: string;
+    titre_poste: string;
+    entreprise: string;
+    nb_candidatures: number;
+    score_moyen: number | null;
+  }[];
+  top_offres_demandees: DashboardStats["candidatures_par_offre"];
+  candidatures_par_entreprise: Record<string, number>;
+  offres_sans_candidature: { id_offre: string; titre_poste: string }[];
+  taux_conversion_candidatures_par_offre: number;
+  taux_laureats_ayant_postule: number;
 }
