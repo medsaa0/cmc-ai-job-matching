@@ -10,10 +10,10 @@ Permettre au CMC de centraliser les profils de ses lauréats et les offres des e
 
 ## Fonctionnalités
 
-- **Lauréats** : inscription en ligne (profil, diplôme, filière, compétences), upload de CV et documents (extraction automatique du texte du CV), consultation des offres classées par score de compatibilité, candidature en ligne, suivi des candidatures.
-- **Entreprises** : inscription en ligne (validée par le CMC avant publication), dépôt d'offres via un formulaire guidé (poste, diplôme/filière requis, compétences avec niveau d'importance), consultation des lauréats les plus compatibles pour chaque offre, export CSV du classement.
-- **Administration CMC** : validation des comptes entreprises, création d'offres au nom du CMC, gestion des lauréats/offres/filières/compétences, import CSV en masse, export CSV, tableau de bord avec statistiques.
-- **Moteur de matching** : score pondéré (compétences, similarité CV/offre par TF-IDF, localisation, expérience, disponibilité), calculé automatiquement à chaque création/mise à jour de profil ou d'offre, et disponible dans les deux sens (offres → lauréat, lauréats → offre).
+- **Lauréats** : inscription en ligne (profil, diplôme, filière, compétences), upload de CV et documents (extraction automatique du texte du CV), consultation des offres **de leur domaine uniquement** classées par score de compatibilité, questionnaire guidé pour affiner leur score, candidature en ligne, suivi des candidatures.
+- **Entreprises** : inscription en ligne (validée par le CMC avant publication), dépôt d'offres via un formulaire guidé (poste, diplôme/filière requis, compétences avec niveau d'importance), **vue classée et filtrable des candidats ayant postulé** (score détaillé, compétences communes/manquantes, changement de statut), export CSV du classement.
+- **Administration CMC** : validation des comptes entreprises, création d'offres au nom du CMC, gestion des lauréats/offres/filières/compétences, import CSV en masse, export CSV, tableau de bord avec statistiques complètes (candidatures par offre/entreprise, taux de conversion) et pages de détail (drill-down offre/lauréat/entreprise).
+- **Moteur de matching** : score pondéré (compétences, similarité CV/offre par TF-IDF, **compatibilité de domaine/filière**, localisation, expérience, disponibilité, **questionnaire**), calculé automatiquement à chaque création/mise à jour de profil ou d'offre, et disponible dans les deux sens (offres → lauréat, lauréats → offre). Voir [Moteur de matching](#moteur-de-matching).
 - **Frontend public** : page d'accueil et liste d'offres consultables sans connexion.
 
 ---
