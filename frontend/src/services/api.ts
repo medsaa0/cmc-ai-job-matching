@@ -68,7 +68,9 @@ export const documentsApi = {
 export const candidaturesApi = {
   postuler: (id_offre: string) => api.post("/api/candidatures/", { id_offre }),
   mine: () => api.get("/api/candidatures/me"),
-  forOffre: (id_offre: string) => api.get(`/api/candidatures/offre/${id_offre}`),
+  forOffre: (id_offre: string, params?: object) =>
+    api.get(`/api/candidatures/offre/${id_offre}`, { params }),
+  statsForOffre: (id_offre: string) => api.get(`/api/candidatures/offre/${id_offre}/stats`),
   updateStatut: (id: number, statut: string) =>
     api.patch(`/api/candidatures/${id}/statut`, { statut }),
 };

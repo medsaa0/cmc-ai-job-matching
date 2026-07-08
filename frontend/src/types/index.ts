@@ -129,6 +129,40 @@ export interface MatchingResult {
   date_matching: string;
 }
 
+export interface CandidatureEnrichie {
+  candidature_id: number;
+  statut: string;
+  applied_at: string | null;
+
+  id_laureat: string;
+  nom: string | null;
+  prenom: string | null;
+  email: string | null;
+  telephone: string | null;
+  filiere: string | null;
+  niveau_formation: string | null;
+  localisation: string | null;
+  linkedin: string | null;
+  github_portfolio: string | null;
+
+  score_final: number | null;
+  score_competences: number | null;
+  score_cv_offre: number | null;
+  score_localisation: number | null;
+  score_domaine: number | null;
+  decision: string | null;
+  competences_communes: string[];
+  competences_manquantes: string[];
+}
+
+export interface CandidatureOffreStats {
+  nb_candidatures_total: number;
+  par_statut: Record<string, number>;
+  par_decision: Record<string, number>;
+  score_moyen: number | null;
+  top_competences_manquantes: [string, number][];
+}
+
 export interface Notification {
   id: number;
   id_laureat: string;
