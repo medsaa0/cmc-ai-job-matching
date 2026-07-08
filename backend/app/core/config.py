@@ -8,6 +8,9 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 480
     CORS_ORIGINS: str = "http://localhost:3000"
+    # "hard" = les offres hors-domaine sont exclues du matching (aucun MatchingResult cree)
+    # "soft" = toutes les paires sont scorees, le score_domaine penalise juste les offres hors-domaine
+    MATCHING_DOMAINE_MODE: str = "hard"
     DATA_DIR: Path = Path(__file__).parent.parent / "data" / "raw"
     UPLOAD_DIR: Path = Path(__file__).parent.parent.parent / "storage" / "uploads"
 

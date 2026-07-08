@@ -118,6 +118,7 @@ export interface MatchingResult {
   id_offre: string;
   score_competences: number;
   score_cv_offre: number;
+  score_domaine: number;
   score_localisation: number;
   score_experience: number;
   score_disponibilite: number;

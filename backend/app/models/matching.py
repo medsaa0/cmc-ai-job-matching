@@ -10,6 +10,7 @@ class MatchingResult(Base):
     id_offre = Column(String(20), index=True)
     score_competences = Column(Float, default=0.0)
     score_cv_offre = Column(Float, default=0.0)
+    score_domaine = Column(Float, default=0.0)
     score_localisation = Column(Float, default=0.0)
     score_experience = Column(Float, default=0.0)
     score_disponibilite = Column(Float, default=0.0)

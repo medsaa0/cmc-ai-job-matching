@@ -9,6 +9,7 @@ class MatchingResultOut(BaseModel):
     id_offre: str
     score_competences: float
     score_cv_offre: float
+    score_domaine: float = 0.0
     score_localisation: float
     score_experience: float
     score_disponibilite: float

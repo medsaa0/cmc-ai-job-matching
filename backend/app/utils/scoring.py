@@ -41,6 +41,13 @@ def score_disponibilite(disponibilite: str) -> float:
 
 
 def compute_score_final(
-    sc: float, scv: float, sl: float, se: float, sd: float
+    sc: float, scv: float, sdom: float, sl: float, se: float, sd: float
 ) -> float:
-    return round(0.40 * sc + 0.25 * scv + 0.15 * sl + 0.10 * se + 0.10 * sd, 2)
+    # Ponderation (somme = 1.0) :
+    #   competences   35% (sc)   - recouvrement competences requises / possedees
+    #   cv_offre      20% (scv)  - similarite TF-IDF texte CV <-> texte offre
+    #   domaine       15% (sdom) - compatibilite domaine/filiere (voir domaine_matching.py)
+    #   localisation  15% (sl)   - correspondance ville / mobilite
+    #   experience    10% (se)   - niveau d'experience deduit du profil
+    #   disponibilite  5% (sd)   - delai de disponibilite du laureat
+    return round(0.35 * sc + 0.20 * scv + 0.15 * sdom + 0.15 * sl + 0.10 * se + 0.05 * sd, 2)

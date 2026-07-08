@@ -1,11 +1,18 @@
 import logging
 from datetime import date
 from sqlalchemy.orm import Session
+from app.core.config import settings
 from app.models.laureat import Laureat
 from app.models.offre import Offre
 from app.models.matching import MatchingResult
 from app.models.competence import Competence
 from app.utils.text_cleaning import normalize, parse_list
+from app.utils.domaine_matching import (
+    build_filiere_domaine_map,
+    get_laureat_domaine,
+    get_offre_domaine,
+    evaluate_domaine,
+)
 from app.utils.scoring import (
     score_localisation,
     score_experience,
@@ -48,6 +55,8 @@ def _score_competences(laureat_comps: list[str], offre_comps: list[str]) -> tupl
 
 def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | None = None) -> int:
     syn_map = _build_synonym_map(db)
+    filiere_domaine_map = build_filiere_domaine_map(db)
+    domaine_mode = settings.MATCHING_DOMAINE_MODE  # "hard" (defaut) ou "soft"
 
     laureats_q = db.query(Laureat)
     if id_laureat:
@@ -59,14 +68,31 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
         offres_q = offres_q.filter(Offre.id_offre == id_offre)
     offres = offres_q.all()
 
+    # Domaine de chaque offre calcule une seule fois (evite de le refaire pour chaque laureat)
+    offre_domaines = {offre.id_offre: get_offre_domaine(offre) for offre in offres}
+
     count = 0
     for laureat in laureats:
+        laureat_domaine = get_laureat_domaine(laureat, filiere_domaine_map)
         l_comps = _normalize_competences(laureat.competences_techniques or "", syn_map)
         cv_full = " ".join(filter(None, [
             laureat.cv_text, laureat.experiences, laureat.certifications, laureat.soft_skills
         ]))
 
         for offre in offres:
+            compatible, sdom = evaluate_domaine(laureat_domaine, offre_domaines[offre.id_offre])
+
+            existing = db.query(MatchingResult).filter_by(
+                id_laureat=laureat.id_laureat, id_offre=offre.id_offre
+            ).first()
+
+            if domaine_mode == "hard" and not compatible:
+                # Offre hors-domaine : aucun resultat de matching pour cette paire.
+                # On supprime aussi un eventuel resultat obsolete d'un run precedent.
+                if existing:
+                    db.delete(existing)
+                continue
+
             o_comps = _normalize_competences(offre.competences_requises or "", syn_map)
             sc, communes, manquantes = _score_competences(l_comps, o_comps)
 
@@ -75,16 +101,13 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
             sl = score_localisation(laureat.localisation or "", offre.localisation or "", laureat.mobilite or "")
             se = score_experience(laureat.experiences or "")
             sd = score_disponibilite(laureat.disponibilite or "")
-            sf = compute_score_final(sc, scv, sl, se, sd)
+            sf = compute_score_final(sc, scv, sdom, sl, se, sd)
             decision = score_to_decision(sf)
-
-            existing = db.query(MatchingResult).filter_by(
-                id_laureat=laureat.id_laureat, id_offre=offre.id_offre
-            ).first()
 
             if existing:
                 existing.score_competences = sc
                 existing.score_cv_offre = scv
+                existing.score_domaine = sdom
                 existing.score_localisation = sl
                 existing.score_experience = se
                 existing.score_disponibilite = sd
@@ -99,6 +122,7 @@ def run_matching(db: Session, id_laureat: str | None = None, id_offre: str | Non
                     id_offre=offre.id_offre,
                     score_competences=sc,
                     score_cv_offre=scv,
+                    score_domaine=sdom,
                     score_localisation=sl,
                     score_experience=se,
                     score_disponibilite=sd,
