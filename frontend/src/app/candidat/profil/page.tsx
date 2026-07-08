@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Download, FileText, Sparkles, AlertTriangle } from "lucide-react";
 import SkillPicker from "@/components/SkillPicker";
+import FiliereSelect from "@/components/FiliereSelect";
 import { laureatsApi, documentsApi } from "@/services/api";
 import type { Laureat, DocumentItem, CvAnalyse } from "@/types";
 
@@ -113,7 +114,7 @@ export default function CandidatProfilPage() {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Filière</label>
-            <input className="input" value={laureat.filiere || ""} onChange={set("filiere")} />
+            <FiliereSelect value={laureat.filiere || ""} onChange={(v) => setLaureat({ ...laureat, filiere: v })} />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Niveau de formation</label>

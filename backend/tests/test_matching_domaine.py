@@ -5,7 +5,7 @@ from app.models.offre import Offre
 from app.models.filiere import Filiere
 from app.models.matching import MatchingResult
 from app.services.matching_service import run_matching
-from app.utils.domaine_matching import evaluate_domaine, is_domaine_compatible
+from app.utils.domaine_matching import evaluate_domaine, is_domaine_compatible, get_offre_domaine
 
 
 def test_evaluate_domaine_same_domain_is_compatible():
@@ -58,8 +58,11 @@ def test_run_matching_never_crosses_domains(db):
     )
     assert len(results) > 0
     for _, offre in results:
-        assert offre.domaine == "Digital & IT", (
-            f"un laureat Digital & IT ne doit jamais matcher une offre '{offre.domaine}'"
+        # Comparaison sur le domaine canonique (pas la chaine brute) : un domaine
+        # saisi librement ("Developpement Digital") doit resoudre au meme domaine
+        # canonique que "Digital & IT" grace a la table de synonymes.
+        assert get_offre_domaine(offre) == "digital & it", (
+            f"un laureat Digital & IT ne doit jamais matcher une offre de domaine '{offre.domaine}'"
         )
 
 

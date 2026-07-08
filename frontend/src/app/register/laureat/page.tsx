@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import PublicHeader from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
 import SkillPicker from "@/components/SkillPicker";
+import FiliereSelect from "@/components/FiliereSelect";
 import { authApi, documentsApi } from "@/services/api";
 import { storeSession } from "@/lib/auth";
 
@@ -157,7 +158,7 @@ export default function RegisterLaureatPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Filière *</label>
-                  <input className="input-cmc" value={form.filiere} onChange={set("filiere")} placeholder="ex: Développement Digital" />
+                  <FiliereSelect value={form.filiere} onChange={(v) => setForm({ ...form, filiere: v })} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Année de promotion *</label>

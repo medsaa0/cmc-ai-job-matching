@@ -17,7 +17,6 @@ def list_filieres(
     niveau: Optional[str] = None,
     q: Optional[str] = None,
     db: Session = Depends(get_db),
-    _=Depends(get_current_user),
 ):
     query = db.query(Filiere)
     if domaine:

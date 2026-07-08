@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import Optional
 from app.core.database import get_db
-from app.core.security import get_current_user
 from app.models.competence import Competence
 from app.schemas.competence import CompetenceOut
 
@@ -17,7 +16,6 @@ def list_competences(
     categorie: Optional[str] = None,
     q: Optional[str] = None,
     db: Session = Depends(get_db),
-    _=Depends(get_current_user),
 ):
     query = db.query(Competence)
     if domaine:

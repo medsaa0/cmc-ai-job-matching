@@ -3,11 +3,19 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { competencesApi, offresApi } from "@/services/api";
+import FiliereSelect from "@/components/FiliereSelect";
 import type { Competence } from "@/types";
 
 const TYPES_CONTRAT = ["Stage", "PFE", "Emploi"];
 const NIVEAUX_EXP = ["Débutant", "1-2 ans", "3-5 ans", "5 ans et plus"];
 const NIVEAUX_FORMATION = ["Technicien", "Technicien Spécialisé", "Ingénieur", "Licence", "Master"];
+// Doit rester aligne avec les domaines canoniques de backend/app/utils/domaine_matching.py
+// (sinon le filtrage par domaine de la Tache 2 tombe en repli neutre pour cette offre).
+const DOMAINES = [
+  "Digital & IT", "Sante", "Agriculture", "Agro-industrie", "Industrie", "BTP",
+  "Gestion", "Design & Communication", "Tourisme & Hotellerie", "QHSE",
+  "Electricite & Energie", "Automobile", "Education",
+];
 
 type CompetenceReq = { id_competence: number; competence: string; importance: number; obligatoire: boolean };
 
@@ -115,7 +123,10 @@ export default function NouvelleOffreAdminPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Domaine *</label>
-                <input className="input" value={form.domaine} onChange={set("domaine")} placeholder="ex: Digital & IT" />
+                <select className="input" value={form.domaine} onChange={set("domaine")}>
+                  <option value="">Sélectionner un domaine</option>
+                  {DOMAINES.map((d) => <option key={d} value={d}>{d}</option>)}
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Localisation *</label>
@@ -151,7 +162,7 @@ export default function NouvelleOffreAdminPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Filière requise *</label>
-              <input className="input" value={form.filiere_requise} onChange={set("filiere_requise")} placeholder="ex: Développement Digital" />
+              <FiliereSelect value={form.filiere_requise} onChange={(v) => setForm({ ...form, filiere_requise: v })} />
             </div>
           </>
         )}
