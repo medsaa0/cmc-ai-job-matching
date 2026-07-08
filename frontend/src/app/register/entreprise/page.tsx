@@ -5,6 +5,7 @@ import PublicHeader from "@/components/PublicHeader";
 import PublicFooter from "@/components/PublicFooter";
 import { authApi } from "@/services/api";
 import { storeSession } from "@/lib/auth";
+import { extractErrorMessage } from "@/lib/errors";
 
 export default function RegisterEntreprisePage() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function RegisterEntreprisePage() {
       storeSession(res.data.access_token, res.data.user);
       router.push("/entreprise/offres");
     } catch (err: any) {
-      setError(err?.response?.data?.detail || "Une erreur est survenue.");
+      setError(extractErrorMessage(err));
     } finally {
       setLoading(false);
     }

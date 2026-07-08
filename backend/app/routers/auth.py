@@ -1,5 +1,6 @@
 import uuid
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.security import hash_password, verify_password, create_access_token, get_current_user
@@ -78,29 +79,42 @@ def register_entreprise(data: EntrepriseRegister, db: Session = Depends(get_db))
     if db.query(User).filter(User.email == data.email).first():
         raise HTTPException(status_code=400, detail="Un compte existe déjà avec cet email")
 
-    entreprise = Entreprise(
-        raison_sociale=data.raison_sociale,
-        secteur=data.secteur,
-        description=data.description,
-        ville=data.ville,
-        site_web=data.site_web,
-        contact_nom=data.contact_nom,
-        contact_telephone=data.contact_telephone,
-        statut_validation="en_attente",
-    )
-    db.add(entreprise)
-    db.flush()
+    try:
+        entreprise = Entreprise(
+            raison_sociale=data.raison_sociale,
+            secteur=data.secteur,
+            description=data.description,
+            ville=data.ville,
+            site_web=data.site_web,
+            contact_nom=data.contact_nom,
+            contact_telephone=data.contact_telephone,
+            statut_validation="en_attente",
+        )
+        db.add(entreprise)
+        db.flush()
 
-    user = User(
-        full_name=data.contact_nom or data.raison_sociale,
-        email=data.email,
-        password_hash=hash_password(data.password),
-        role="entreprise",
-        entreprise_id=entreprise.id,
-    )
-    db.add(user)
-    db.commit()
+        user = User(
+            full_name=data.contact_nom or data.raison_sociale,
+            email=data.email,
+            password_hash=hash_password(data.password),
+            role="entreprise",
+            entreprise_id=entreprise.id,
+        )
+        db.add(user)
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=400,
+            detail="Un compte existe déjà avec cet email",
+        )
+    except Exception:
+        db.rollback()
+        raise HTTPException(
+            status_code=400,
+            detail="Impossible de créer le compte entreprise. Vérifiez les informations saisies.",
+        )
+
     db.refresh(user)
-
     token = create_access_token({"sub": user.email, "role": user.role})
     return {"access_token": token, "token_type": "bearer", "user": user}
