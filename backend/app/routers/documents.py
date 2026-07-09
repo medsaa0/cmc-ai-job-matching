@@ -28,6 +28,27 @@ def _extract_pdf_text(path: Path) -> str:
         return ""
 
 
+def _extract_docx_text(path: Path) -> str:
+    try:
+        from docx import Document as DocxDocument
+        doc = DocxDocument(str(path))
+        paragraphs = [p.text for p in doc.paragraphs if p.text]
+        tables = [
+            cell.text for table in doc.tables for row in table.rows for cell in row.cells if cell.text
+        ]
+        return "\n".join(paragraphs + tables)
+    except Exception:
+        return ""
+
+
+def _extract_cv_text(path: Path, ext: str) -> str:
+    if ext == ".pdf":
+        return _extract_pdf_text(path)
+    if ext == ".docx":
+        return _extract_docx_text(path)
+    return ""
+
+
 @router.post("/upload", response_model=DocumentOut)
 def upload_document(
     type: str = Form(...),
@@ -57,8 +78,8 @@ def upload_document(
 
     matching_a_relancer = False
 
-    if type == "CV" and ext == ".pdf":
-        extracted = _extract_pdf_text(dest_path)
+    if type == "CV" and ext in (".pdf", ".docx"):
+        extracted = _extract_cv_text(dest_path, ext)
         if extracted.strip():
             laureat.cv_text = extracted
 
@@ -70,6 +91,17 @@ def upload_document(
                 matching_a_relancer = True
             else:
                 laureat.cv_analyse_statut = "desactivee" if not settings.GEMINI_API_KEY else "echec"
+        else:
+            # Extraction du texte impossible (mise en page non standard, fichier corrompu...) :
+            # on le signale plutot que de laisser cv_analyse_statut a None en silence.
+            laureat.cv_analyse_statut = "extraction_echouee"
+        laureat.cv_file_path = str(dest_path)
+        db.add(laureat)
+    elif type == "CV" and ext == ".doc":
+        # Format binaire legacy non supporte (necessiterait un outil externe type
+        # antiword/LibreOffice). Le fichier est bien stocke, mais ni le texte ni
+        # l'analyse IA ne sont extraits.
+        laureat.cv_analyse_statut = "format_non_supporte"
         laureat.cv_file_path = str(dest_path)
         db.add(laureat)
 

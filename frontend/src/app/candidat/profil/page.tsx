@@ -200,6 +200,20 @@ export default function CandidatProfilPage() {
             à compléter manuellement.
           </div>
         )}
+        {laureat.cv_analyse_statut === "extraction_echouee" && (
+          <div className="flex items-center gap-2 bg-amber-50 text-amber-700 text-sm p-3 rounded-lg">
+            <AlertTriangle size={16} />
+            Impossible d&apos;extraire le texte de ce fichier (mise en page inhabituelle, CV scanné en
+            image...). Complétez vos compétences et expériences manuellement ci-dessus.
+          </div>
+        )}
+        {laureat.cv_analyse_statut === "format_non_supporte" && (
+          <div className="flex items-center gap-2 bg-amber-50 text-amber-700 text-sm p-3 rounded-lg">
+            <AlertTriangle size={16} />
+            Le format .doc n&apos;est pas pris en charge pour l&apos;extraction automatique. Utilisez un
+            fichier .pdf ou .docx, ou complétez votre profil manuellement.
+          </div>
+        )}
       </div>
 
       {cvAnalyse && (
