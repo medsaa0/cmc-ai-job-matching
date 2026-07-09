@@ -19,6 +19,12 @@ out/
 next-env.d.ts
 npm-debug.log*
 
+# Playwright (e2e)
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
+frontend/playwright/.cache/
+
 # Uploaded user documents (CVs, IDs, etc.) — never commit real user files
 backend/storage/uploads/*
 !backend/storage/uploads/.gitkeep

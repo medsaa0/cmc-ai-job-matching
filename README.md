@@ -48,7 +48,9 @@ cmc-ai-job-matching/
 │       ├── services/          # Client API (Axios)
 │       ├── lib/                # Auth, garde de rôle
 │       └── types/              # Interfaces TypeScript
-└── docker-compose.yml
+│   └── e2e/                    # Tests Playwright (garde-fous de non-régression)
+├── docker-compose.yml
+└── docker-compose.dev.yml     # Surcharge : frontend en hot-reload (next dev)
 ```
 
 ---
@@ -105,6 +107,26 @@ uvicorn app.main:app --reload --port 8000
 cd frontend
 npm install
 NEXT_PUBLIC_API_URL=http://localhost:8000 npm run dev
+```
+
+### Frontend en hot-reload avec Docker
+
+Le service `frontend` de `docker-compose.yml` sert une **image figée** (build de production, `node server.js`) : modifier le code source ne suffit pas, il faut rebuilder l'image (`docker compose up -d --build frontend`) pour voir le changement. Pour du développement actif avec rechargement à chaud sans rebuild, utiliser le fichier de surcharge dédié :
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build frontend
+```
+
+Cela lance `next dev` avec le code source monté en volume. Revenir au mode production standard avec `docker compose up -d --build frontend`.
+
+### Tests end-to-end (Playwright)
+
+Quelques scénarios critiques (garde-fous de non-régression) sont couverts dans `frontend/e2e/` :
+
+```bash
+cd frontend
+npx playwright install --with-deps chromium   # une seule fois
+npm run test:e2e                               # nécessite l'app lancée sur :3001
 ```
 
 ---
